@@ -1,9 +1,12 @@
 package br.com.gabriel.javflix.modelo;
 
 import br.com.gabriel.javflix.calculos.Classificavel;
+import com.google.gson.annotations.SerializedName;
 
 public class Titulo implements Classificavel , Comparable<Titulo> {
+    @SerializedName("Title")
     private String nome;
+    @SerializedName("Year")
     private int anoDeLancamento;
     private boolean incluidoNoPlano;
     private double avaliacao;
@@ -15,6 +18,13 @@ public class Titulo implements Classificavel , Comparable<Titulo> {
     public Titulo(String nome, int anoDeLancamento) {
         this.setNome(nome);
         this.setAnoDeLancamento(anoDeLancamento);
+    }
+
+    public Titulo(TituloOmdb newtituloOmdb) {
+        this.nome = newtituloOmdb.title();
+        this.anoDeLancamento = Integer.valueOf(newtituloOmdb.year().substring(0,4));
+        this.duracaoEmMinutos = Integer.parseInt(newtituloOmdb.runtime().replaceAll(" min",""));
+
     }
 
     public String getNome() {
@@ -75,7 +85,8 @@ public class Titulo implements Classificavel , Comparable<Titulo> {
     }
     @Override
     public String toString() {
-        return "Filme: " + this.getNome() + " (" + this.getAnoDeLancamento() + ")";
+        return  ( "Nome: " + this.getNome() + " (" + this.getAnoDeLancamento() + ") " +
+                    "Duração:" + this.getDuracaoEmMinutos())+ "min";
     }
 
 

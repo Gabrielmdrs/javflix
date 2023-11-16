@@ -4,9 +4,7 @@ import br.com.gabriel.javflix.modelo.Filme;
 import br.com.gabriel.javflix.modelo.Serie;
 import br.com.gabriel.javflix.modelo.Titulo;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 public class PrincipalComLista {
     public static void main(String[] args) {
@@ -32,6 +30,18 @@ public class PrincipalComLista {
             System.out.println(item);
             System.out.println("Avaliação em estrelas: " + item.getClassificacao());
         }
+
+        List<String> buscaPorArtista = new LinkedList<>();
+        buscaPorArtista.add("Adam Sandley");
+        buscaPorArtista.add("Samuel Pereira");
+        buscaPorArtista.add("Tom Cruise");
+        Collections.sort(buscaPorArtista);
+
+        lista.sort(Comparator.comparing(Titulo::getAnoDeLancamento));
+        System.out.println(lista);
+
+
+
 
 
 
